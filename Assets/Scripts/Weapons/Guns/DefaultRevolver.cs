@@ -25,7 +25,7 @@ public class DefaultRevolver : MonoBehaviour, IGunBehaviour
         Vector2 shootDirection = shootOrigin.transform.right;
         float angle = Mathf.Atan2(shootDirection.y, shootDirection.x) * Mathf.Rad2Deg;
         Quaternion shootRotation = Quaternion.Euler(0, 0, angle - 90);
-        objectPooler.SpawnFromPool("Projectiles", shootOrigin.position, shootRotation);
+        objectPooler.SpawnFromPool("RevolverBullets", shootOrigin.position, shootRotation);
     }
 
     public void Reload()

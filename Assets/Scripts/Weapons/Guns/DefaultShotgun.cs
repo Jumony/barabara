@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class DefaultShotgun : MonoBehaviour, IGunBehaviour
 {
-
     public Transform shootOrigin;
     private ObjectPooler objectPooler;
+    private float[] shootAngleOffsets = { 30, 60, 90, 120, 150 };
 
     // Start is called before the first frame update
     void Start()
@@ -27,16 +27,12 @@ public class DefaultShotgun : MonoBehaviour, IGunBehaviour
     {
         Vector2 shootDirection = shootOrigin.transform.right;
         float angle = Mathf.Atan2(shootDirection.y, shootDirection.x) * Mathf.Rad2Deg;
-        Quaternion upAdjustment1 = Quaternion.Euler(0, 0, angle - 60);
-        Quaternion upAdjustment2 = Quaternion.Euler(0, 0, angle - 30);
-        Quaternion straightShootRotation = Quaternion.Euler(0, 0, angle - 90);
-        Quaternion downAdjustment1 = Quaternion.Euler(0, 0, angle - 120);
-        Quaternion downAdjustment2 = Quaternion.Euler(0, 0, angle - 150);
-        objectPooler.SpawnFromPool("Shotgun", shootOrigin.position, upAdjustment1);
-        objectPooler.SpawnFromPool("Shotgun", shootOrigin.position, upAdjustment2);
-        objectPooler.SpawnFromPool("Shotgun", shootOrigin.position, straightShootRotation);
-        objectPooler.SpawnFromPool("Shotgun", shootOrigin.position, downAdjustment1);
-        objectPooler.SpawnFromPool("Shotgun", shootOrigin.position, downAdjustment2);
+
+        foreach (float offset in  shootAngleOffsets)
+        {
+            objectPooler.SpawnFromPool("ShotgunBullets", shootOrigin.position, Quaternion.Euler(0, 0, angle - offset));
+        }
+
     }
 
     public void Reload()

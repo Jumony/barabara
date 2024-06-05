@@ -162,6 +162,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 5892390493039235894}
-  defaultBullet: {fileID: 11400000, guid: 51b18865bd3a0bc4489062e48bfcf559, type: 2}
-  projectileSpeed: 0
-  projectileDamage: 0
+  bulletData: {fileID: 11400000, guid: 51b18865bd3a0bc4489062e48bfcf559, type: 2}
