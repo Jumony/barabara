@@ -168,3 +168,6 @@ MonoBehaviour:
   basicEnemy: {fileID: 11400000, guid: f52c9a58534507d4cb7f418ec5c5eec3, type: 2}
   bufferDistance: 0.5
   pathUpdateInterval: 0.1
+  selfDestructRange: 5
+  selfDestructTime: 3
+  selfDestructDamage: 25

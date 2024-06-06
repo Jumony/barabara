@@ -4,13 +4,24 @@ using UnityEngine;
 
 public class BasicEnemy : MonoBehaviour, IPooledObject
 {
-    public Transform target;
+    [Header("Stats")]
     public float speed = 5f;
+    public EnemyType basicEnemy;
+
+    [Header("Pathfinding")]
+    public Transform target;
     public float stoppingDistance = 0.5f;
     public float detectionRadius;
-    public EnemyType basicEnemy;
     public float bufferDistance;
     public float pathUpdateInterval = 0.1f; // Interval in seconds to update the path
+
+    [Header("Self Destruct")]
+    [Tooltip("Distance from player before enemy begins self-destruct sequence")]
+    public float selfDestructRange;
+    [Tooltip("Amount of time it takes to blow up (Should match animation time)")]
+    public float selfDestructTime;
+    [Tooltip("Damage done to player if player is in range of explosion")]
+    public int selfDestructDamage;
 
     private Vector3[] path;
     private int targetIndex;
@@ -19,6 +30,9 @@ public class BasicEnemy : MonoBehaviour, IPooledObject
     private float damage;
     private PathRequestManager pathRequestManager;
     private ObjectPooler objectPooler;
+    private PlayerStatManager playerStatManager;
+
+    private Coroutine selfDestructCoroutine;
 
     private void Start()
     {
@@ -36,6 +50,8 @@ public class BasicEnemy : MonoBehaviour, IPooledObject
             Debug.LogError("Pathfinding is not assigned!");
             return;
         }
+
+        playerStatManager = GameObject.Find("Player").GetComponent<PlayerStatManager>();
     }
 
     public void OnObjectSpawn()
@@ -46,9 +62,18 @@ public class BasicEnemy : MonoBehaviour, IPooledObject
         StartCoroutine(UpdatePath());
     }
 
+    private void Update()
+    {
+        Debug.DrawRay(transform.position, transform.right * bufferDistance, Color.green);
+        if (selfDestructCoroutine == null && Vector2.Distance(transform.position, target.position) < selfDestructRange)
+        {
+            selfDestructCoroutine = StartCoroutine(SelfDestruct());
+        }
+    }
+
     private void FixedUpdate()
     {
-        if (path != null && path.Length > 0 && targetIndex < path.Length)
+        if (path != null && path.Length > 0 && targetIndex < path.Length && selfDestructCoroutine == null)
         {
             Vector3 currentWaypoint = path[targetIndex];
             if (Vector2.Distance(transform.position, currentWaypoint) < stoppingDistance)
@@ -76,11 +101,7 @@ public class BasicEnemy : MonoBehaviour, IPooledObject
         }
     }
 
-    private void Update()
-    {
-        Debug.DrawRay(transform.position, transform.right * bufferDistance, Color.green);
-        RaycastHit2D hit = Physics2D.CircleCast(transform.position, detectionRadius, transform.right, 0, LayerMask.GetMask("Player"));
-    }
+
 
     public void TakeDamage(float damageTaken)
     {
@@ -104,6 +125,20 @@ public class BasicEnemy : MonoBehaviour, IPooledObject
             RequestPath();
             yield return new WaitForSeconds(pathUpdateInterval);
         }
+    }
+
+    private IEnumerator SelfDestruct()
+    {
+        rb.velocity = Vector2.zero;
+        // Play animation
+        yield return new WaitForSeconds(selfDestructTime);
+        // Damage player
+        if (Vector2.Distance (transform.position, target.position) <= selfDestructRange)
+        {
+            playerStatManager.TakeDamage(selfDestructDamage);
+        }
+        gameObject.SetActive(false);
+        //Spawn explosion effect
     }
 
     private void RequestPath()

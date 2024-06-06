@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2476162051108592220}
   - component: {fileID: 774988386318723109}
   - component: {fileID: 414637565088292853}
+  - component: {fileID: 5260742919262989108}
   - component: {fileID: 2999831649310394988}
   - component: {fileID: 5649740349579061156}
   m_Layer: 6
@@ -134,9 +135,7 @@ MonoBehaviour:
   rb: {fileID: 2476162051108592220}
   bulletPrefab: {fileID: 915244487985209796, guid: fb2314f710932a74cbcadd8824afce08, type: 3}
   enemyPrefab: {fileID: 6927098771506876257, guid: 68899005040347249a2d53aa189419a8, type: 3}
-  currentWeapon: {fileID: 0}
   defaultFists: {fileID: 1471827734265957601, guid: 003a047522cd06e409d9cd5d2035e6fe, type: 3}
-  weaponRotation: {fileID: 0}
   weapons: []
 --- !u!114 &414637565088292853
 MonoBehaviour:
@@ -151,6 +150,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coin: {fileID: 11400000, guid: 593b119a12e9e524cb6199cca16a62ec, type: 2}
+--- !u!114 &5260742919262989108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6548589923249950629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 826fdbbe92931364fb5f4d1527689998, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
 --- !u!58 &2999831649310394988
 CircleCollider2D:
   m_ObjectHideFlags: 0

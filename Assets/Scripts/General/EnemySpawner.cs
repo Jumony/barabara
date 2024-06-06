@@ -20,6 +20,7 @@ public class EnemySpawner : MonoBehaviour
     private ObjectPooler objectPooler;
 
     private bool isSpawning = false;
+    private Coroutine spawnCoroutine;
     public bool enableGizmos;
 
     private void Start()
@@ -43,7 +44,7 @@ public class EnemySpawner : MonoBehaviour
                 if (!isSpawning)
                 {
                     isSpawning = true;
-                    StartCoroutine(SpawnWaves(enemies, waves, timeBetweenWaves));
+                    spawnCoroutine = StartCoroutine(SpawnWaves(enemies, waves, timeBetweenWaves));
                 }
             }
             else
@@ -52,7 +53,11 @@ public class EnemySpawner : MonoBehaviour
                 if (isSpawning)
                 {
                     isSpawning = false;
-                    StopAllCoroutines(); // Stop all coroutines
+                    if (spawnCoroutine != null)
+                    {
+                        StopCoroutine(spawnCoroutine);
+                        spawnCoroutine = null;
+                    }
                 }
             }
 
@@ -81,6 +86,7 @@ public class EnemySpawner : MonoBehaviour
             yield return StartCoroutine(SpawnEnemies(enemies, enemyCount, spawnIntervalMin, spawnIntervalMax));
             yield return new WaitForSeconds(timeBetweenWaves);
         }
+        isSpawning = false; // Reset isSpawning after waves are complete
     }
 
     // Precondition: enemies is a valid array of GameObjects
@@ -91,9 +97,9 @@ public class EnemySpawner : MonoBehaviour
     //  buffer
     private IEnumerator SpawnEnemies(GameObject[] enemies, float amount, float minTime, float maxTime)
     {
-        Vector2 spawnPosition = GetRandomPointInSpawnArea();
         for (int i = 0; i < amount; i++)
         {
+            Vector2 spawnPosition = GetRandomPointInSpawnArea();
             GameObject randomEnemy = enemies[Random.Range(0, enemies.Length)];
             objectPooler.SpawnFromPool(randomEnemy.name, spawnPosition, Quaternion.identity);
             yield return new WaitForSeconds(Random.Range(minTime, maxTime));

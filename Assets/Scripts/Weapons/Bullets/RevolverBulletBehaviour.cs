@@ -22,10 +22,10 @@ public class RevolverBulletBehaviour : MonoBehaviour, IPooledObject
         projectileDamage = bulletData.damage;
         startTime = Time.time;
 
-        Physics2D.IgnoreCollision(GetComponent<Collider2D>(), GameObject.Find("Tilemap_Water").GetComponent<Collider2D>());
-
         // Get the layer mask for the "Bullet" layer
         int bulletLayer = LayerMask.NameToLayer("IgnoreBulletCollision");
+
+        Physics2D.IgnoreCollision(GetComponent<Collider2D>(), GameObject.Find("Tilemap_Water").GetComponent<Collider2D>());
 
         // Ignore collisions between the current bullet and other bullets
         Physics2D.IgnoreLayerCollision(gameObject.layer, bulletLayer);
@@ -35,7 +35,7 @@ public class RevolverBulletBehaviour : MonoBehaviour, IPooledObject
     void Update()
     {
 
-        if (Time.time - startTime >= 10f)
+        if (Time.time - startTime >= 5f)
         {
             gameObject.SetActive(false);
         }

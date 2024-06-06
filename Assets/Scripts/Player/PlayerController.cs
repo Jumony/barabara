@@ -18,12 +18,12 @@ public class PlayerController : MonoBehaviour
 
     public GameObject bulletPrefab;
     public GameObject enemyPrefab;
-    public GameObject currentWeapon;
+    private GameObject currentWeapon;
     public GameObject defaultFists;
 
     private Animator animator;
 
-    public WeaponRotation weaponRotation;
+    private WeaponRotation weaponRotation;
 
     public List<GameObject> weapons = new List<GameObject>();
     private int currentWeaponIndex = 0;
