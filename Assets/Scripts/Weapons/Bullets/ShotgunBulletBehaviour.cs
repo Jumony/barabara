@@ -22,6 +22,8 @@ public class ShotgunBulletBehaviour : MonoBehaviour, IPooledObject
         int bulletLayer = LayerMask.NameToLayer("IgnoreBulletCollision");
 
         Physics2D.IgnoreLayerCollision(gameObject.layer, bulletLayer);
+
+        Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Player"));
     }
 
     // Update is called once per frame

@@ -2,29 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponPickup : MonoBehaviour, IInteractable
+public class WeaponPickup : MonoBehaviour
 {
     public GameObject weaponPrefab;
+    public PlayerWeaponType weaponType;
     private PlayerController playerController;
+    private CurrencyManager currencyManager;
+    public CurrencyType currencyType;
     private bool playerInRange;
 
     private void Start()
     {
+        currencyManager = CurrencyManager.Instance;
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     private void Update()
     {
-        if (playerInRange && Input.GetKeyDown(KeyCode.E))
+        if (playerInRange && Input.GetKeyDown(KeyCode.E) && currencyManager.GetBalance(currencyType) >= weaponType.price)
         {
+            HandleTransaction();
             playerController.PickUpWeapon(weaponPrefab);
             Destroy(gameObject);
         }
     }
 
-    public void Interact()
+    private void HandleTransaction()
     {
-        return;
+        Debug.Log("Enough Money. Purchasing");
+        currencyManager.SpendCurrency(currencyType, weaponType.price);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

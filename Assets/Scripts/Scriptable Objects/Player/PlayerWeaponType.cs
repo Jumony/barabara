@@ -7,5 +7,6 @@ public class PlayerWeaponType : ScriptableObject
 {
     public float projectileSpeed;
     public float damage;
+    public int price;
     public GameObject gunPrefab;
 }

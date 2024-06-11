@@ -19,6 +19,7 @@ public class EnemySpawner : MonoBehaviour
     private ObjectPooler objectPooler;
 
     private bool isSpawning = false;
+    public bool gracePeriod;
     private Coroutine spawnCoroutine;
     public bool enableGizmos;
     private SpawnArea selectedArea;
@@ -40,7 +41,7 @@ public class EnemySpawner : MonoBehaviour
             if (IsNightTime())
             {
                 // Start spawning enemies
-                if (!isSpawning)
+                if (!isSpawning && !gracePeriod)
                 {
                     isSpawning = true;
                     spawnCoroutine = StartCoroutine(SpawnWaves(enemies, waves, timeBetweenWaves));

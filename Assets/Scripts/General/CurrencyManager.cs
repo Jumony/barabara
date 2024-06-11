@@ -72,8 +72,10 @@ public class CurrencyManager : MonoBehaviour
         currencyBalances[currencyType] += amount;
 
 
+
        //Debug.Log("New balance is: " + currencyBalances[currencyType]);
         coinText.text = currencyBalances[currencyType].ToString();
+        SaveCurrency();
     }
 
     public void SpendCurrency(CurrencyType currencyType, int amount)
@@ -89,6 +91,7 @@ public class CurrencyManager : MonoBehaviour
 
         //Debug.Log("New balance is: " + currencyBalances[currencyType]);
         coinText.text = currencyBalances[currencyType].ToString();
+        SaveCurrency();
     }
 
     private void SaveCurrency()

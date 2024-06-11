@@ -25961,6 +25961,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: RevolverPickup
       objectReference: {fileID: 0}
+    - target: {fileID: 7976328532535163562, guid: a218871ead3d51a4d9fa2ed38d40e3a3, type: 3}
+      propertyPath: weaponType
+      value: 
+      objectReference: {fileID: 11400000, guid: 51b18865bd3a0bc4489062e48bfcf559, type: 2}
+    - target: {fileID: 7976328532535163562, guid: a218871ead3d51a4d9fa2ed38d40e3a3, type: 3}
+      propertyPath: currencyType
+      value: 
+      objectReference: {fileID: 11400000, guid: 593b119a12e9e524cb6199cca16a62ec, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -25983,6 +25991,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShotgunPickup
       objectReference: {fileID: 0}
+    - target: {fileID: 581367446136819581, guid: 9349244ffcb3bb54d807ec2116d79242, type: 3}
+      propertyPath: weaponType
+      value: 
+      objectReference: {fileID: 11400000, guid: 7739d10546131fd4b8d8ca1b9c5f4ca9, type: 2}
+    - target: {fileID: 581367446136819581, guid: 9349244ffcb3bb54d807ec2116d79242, type: 3}
+      propertyPath: currencyType
+      value: 
+      objectReference: {fileID: 11400000, guid: 593b119a12e9e524cb6199cca16a62ec, type: 2}
     - target: {fileID: 1424172089515400674, guid: 9349244ffcb3bb54d807ec2116d79242, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.8849
