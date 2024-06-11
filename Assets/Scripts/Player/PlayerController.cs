@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
 
     private WeaponRotation weaponRotation;
 
-    public List<GameObject> weapons = new List<GameObject>();
+    public List<GameObject> weapons = new List<GameObject>(); 
     private int currentWeaponIndex = 0;
 
     enum Direction { Up, Right, Down, Left };
@@ -157,13 +157,17 @@ public class PlayerController : MonoBehaviour
             currentWeapon.SetActive(false);
         }
 
-        GameObject newWeapon = Instantiate(weaponPrefab);
-        newWeapon.transform.SetParent(gameObject.transform, false);
-        newWeapon.SetActive(false);
-        weapons.Add(newWeapon);
+        if (!weapons.Contains(weaponPrefab))
+        {
+            GameObject newWeapon = Instantiate(weaponPrefab);
+            newWeapon.transform.SetParent(gameObject.transform, false);
+            newWeapon.SetActive(false);
+            weapons.Add(newWeapon);
 
-        currentWeaponIndex = weapons.Count - 1;
-        ActivateWeapon(currentWeaponIndex);
+            currentWeaponIndex = weapons.Count - 1;
+            ActivateWeapon(currentWeaponIndex);
+        }
+
     }
 
     private void SpawnWithFist(GameObject fistsPrefab)
