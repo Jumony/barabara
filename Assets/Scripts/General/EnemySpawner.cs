@@ -8,7 +8,6 @@ public class EnemySpawner : MonoBehaviour
     public Vector2 size;
 
     public List<SpawnArea> spawnAreas;
-    private List<string> poolKeys;
     public GameObject[] enemies;
     public int waves;
     public float timeBetweenWaves;
@@ -22,12 +21,12 @@ public class EnemySpawner : MonoBehaviour
     private bool isSpawning = false;
     private Coroutine spawnCoroutine;
     public bool enableGizmos;
+    private SpawnArea selectedArea;
 
     private void Start()
     {
         dayNightManager = GameObject.Find("DayNightManager").GetComponent<DayNightManager>();
         objectPooler = GameObject.Find("ObjectPooler").GetComponent<ObjectPooler>();
-        poolKeys = new List<string>(objectPooler.poolDictionary.Keys);
 
         // Start spawning coroutine
         StartCoroutine(SpawnDuringNight());
@@ -83,6 +82,7 @@ public class EnemySpawner : MonoBehaviour
     {
         for (int i = 0; i < waves; i++)
         {
+            selectedArea = spawnAreas[Random.Range(0, spawnAreas.Count)];
             yield return StartCoroutine(SpawnEnemies(enemies, enemyCount, spawnIntervalMin, spawnIntervalMax));
             yield return new WaitForSeconds(timeBetweenWaves);
         }
@@ -99,7 +99,7 @@ public class EnemySpawner : MonoBehaviour
     {
         for (int i = 0; i < amount; i++)
         {
-            Vector2 spawnPosition = GetRandomPointInSpawnArea();
+            Vector2 spawnPosition = GetRandomPointInSpawnArea(selectedArea);
             GameObject randomEnemy = enemies[Random.Range(0, enemies.Length)];
             objectPooler.SpawnFromPool(randomEnemy.name, spawnPosition, Quaternion.identity);
             yield return new WaitForSeconds(Random.Range(minTime, maxTime));
@@ -107,11 +107,10 @@ public class EnemySpawner : MonoBehaviour
     }
 
     // Selects a random spawn area and then returns a random Vector2 in the selected spawn area
-    private Vector2 GetRandomPointInSpawnArea()
+    private Vector2 GetRandomPointInSpawnArea(SpawnArea area)
     {
-        SpawnArea selectedArea = spawnAreas[Random.Range(0, spawnAreas.Count)];
-        float randX = Random.Range(selectedArea.center.x - selectedArea.size.x / 2, selectedArea.center.x + selectedArea.size.x / 2);
-        float randY = Random.Range(selectedArea.center.y - selectedArea.size.y / 2, selectedArea.center.y + selectedArea.size.y / 2);
+        float randX = Random.Range(area.center.x - area.size.x / 2, area.center.x + area.size.x / 2);
+        float randY = Random.Range(area.center.y - area.size.y / 2, area.center.y + area.size.y / 2);
 
         return new Vector2(randX, randY);
     }

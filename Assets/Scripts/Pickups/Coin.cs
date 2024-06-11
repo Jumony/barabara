@@ -11,8 +11,12 @@ public class Coin : MonoBehaviour, IPooledObject
     private Tilemap rockTilemap;
     private Tilemap waterTilemap;
 
+    private CurrencyManager currencyManager;
+    public CurrencyType currencyType;
+
     private void Start()
     {
+        currencyManager = CurrencyManager.Instance;
         rockTilemap = GameObject.Find("Tilemap_Rock").GetComponent<Tilemap>();
         waterTilemap = GameObject.Find("Tilemap_Water").GetComponent<Tilemap>();
     }
@@ -44,6 +48,13 @@ public class Coin : MonoBehaviour, IPooledObject
             Vector2 collisionNormal = GetCollisionNormal(collision);
             ReflectCoin(collisionNormal);
             Debug.Log("Hit: " + collision.gameObject.name);
+        }
+
+        if (collision.gameObject.name == "Coin Trigger")
+        {
+            currencyManager.AddCurrency(currencyType, 1);
+            Debug.Log(currencyManager.GetBalance(currencyType));
+            gameObject.SetActive(false);
         }
     }
 

@@ -161,13 +161,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 135a963b000cecc4dbec38f6d39e9b8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   speed: 5
+  basicEnemy: {fileID: 11400000, guid: f52c9a58534507d4cb7f418ec5c5eec3, type: 2}
+  target: {fileID: 0}
   stoppingDistance: 0.5
   detectionRadius: 1
-  basicEnemy: {fileID: 11400000, guid: f52c9a58534507d4cb7f418ec5c5eec3, type: 2}
   bufferDistance: 0.5
   pathUpdateInterval: 0.1
-  selfDestructRange: 5
-  selfDestructTime: 3
+  selfDestructRange: 1
+  selfDestructTime: 1
   selfDestructDamage: 25

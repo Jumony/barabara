@@ -54,7 +54,7 @@ public class Heap<T> where T : IHeapItem<T>
         {
             int childIndexLeft = item.HeapIndex * 2 + 1;
             int childIndexRight = item.HeapIndex * 2 + 2;
-            int swapIndex = 0;
+            int swapIndex;
 
             if (childIndexLeft < currentItemCount) // Checks if the left child exists
             {

@@ -29,6 +29,9 @@ public class RevolverBulletBehaviour : MonoBehaviour, IPooledObject
 
         // Ignore collisions between the current bullet and other bullets
         Physics2D.IgnoreLayerCollision(gameObject.layer, bulletLayer);
+
+        // Ignore collisions between the current bullet and the player layer
+        Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Player"));
     }
 
     // Update is called once per frame
@@ -52,6 +55,7 @@ public class RevolverBulletBehaviour : MonoBehaviour, IPooledObject
         }
         else
         {
+            Debug.Log("Hit" + collision.gameObject.name);
             gameObject.SetActive(false);
         }
     }

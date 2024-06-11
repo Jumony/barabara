@@ -7,6 +7,9 @@ public class DefaultRevolver : MonoBehaviour, IGunBehaviour
     public Transform shootOrigin;
     private ObjectPooler objectPooler;
 
+    public float fireRate;
+    private float nextFireTime = 0f;
+
     private void Start()
     {
         objectPooler = GameObject.Find("ObjectPooler").GetComponent<ObjectPooler>();
@@ -14,9 +17,10 @@ public class DefaultRevolver : MonoBehaviour, IGunBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && Time.time >= nextFireTime)
         {
             Shoot();
+            nextFireTime = Time.time + fireRate;
         }
     }
 

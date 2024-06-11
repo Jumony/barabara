@@ -114,6 +114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootOrigin: {fileID: 6661408929581028753}
+  fireRate: 0.5
 --- !u!1 &3980426635440733790
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,14 +11,4 @@ public class PlayerTriggers : MonoBehaviour
         currencyManager = CurrencyManager.Instance;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Coin"))
-        {
-            currencyManager.AddCurrency(coin, 1);
-            Debug.Log(currencyManager.GetBalance(coin));
-            collision.gameObject.SetActive(false);
-        }
-
-    }
 }

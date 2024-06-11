@@ -162,5 +162,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 7411715313623042137}
-  rockGameObject: {fileID: 0}
-  waterGameObject: {fileID: 0}
+  currencyType: {fileID: 11400000, guid: 593b119a12e9e524cb6199cca16a62ec, type: 2}
