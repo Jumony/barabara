@@ -26139,14 +26139,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShotgunPickup
       objectReference: {fileID: 0}
-    - target: {fileID: 581367446136819581, guid: 9349244ffcb3bb54d807ec2116d79242, type: 3}
-      propertyPath: weaponType
-      value: 
-      objectReference: {fileID: 11400000, guid: 7739d10546131fd4b8d8ca1b9c5f4ca9, type: 2}
-    - target: {fileID: 581367446136819581, guid: 9349244ffcb3bb54d807ec2116d79242, type: 3}
-      propertyPath: currencyType
-      value: 
-      objectReference: {fileID: 11400000, guid: 593b119a12e9e524cb6199cca16a62ec, type: 2}
     - target: {fileID: 1424172089515400674, guid: 9349244ffcb3bb54d807ec2116d79242, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.8849

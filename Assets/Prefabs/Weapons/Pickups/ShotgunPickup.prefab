@@ -172,3 +172,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponPrefab: {fileID: 7695977494905872872, guid: 3304f82f94a9cc848b62181eb51d7383, type: 3}
+  weaponType: {fileID: 11400000, guid: 7739d10546131fd4b8d8ca1b9c5f4ca9, type: 2}
+  currencyType: {fileID: 11400000, guid: 593b119a12e9e524cb6199cca16a62ec, type: 2}

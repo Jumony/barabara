@@ -35,6 +35,11 @@ public class GamblerBehaviour : MonoBehaviour
 
     void Gamble()
     {
+        if (!SaveLoad.playerProgression.hasGambled)
+        {
+            SaveLoad.playerProgression.hasGambled = true;
+        }
+
         // Choose a random weapon instance from the list of gambleable items
         GameObject randomWeaponInstance = GambleableItems[Random.Range(0, GambleableItems.Count)];
 

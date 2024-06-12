@@ -33,6 +33,10 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SaveLoad.Load();
+        Debug.Log("Unlocked Revolver Status: " + SaveLoad.playerProgression.hasUnlockedRevolver);
+        Debug.Log("Unlocked Shotgun Status: " + SaveLoad.playerProgression.hasUnlockedShotgun);
+        Debug.Log("Has Gambled Status: " + SaveLoad.playerProgression.hasGambled);
         animator = GetComponent<Animator>();
 
         if (weapons.Count == 0)

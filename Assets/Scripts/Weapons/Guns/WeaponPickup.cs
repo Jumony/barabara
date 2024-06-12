@@ -22,6 +22,7 @@ public class WeaponPickup : MonoBehaviour
         if (playerInRange && Input.GetKeyDown(KeyCode.E) && currencyManager.GetBalance(currencyType) >= weaponType.price)
         {
             HandleTransaction();
+            HandleAchievement();
             playerController.PickUpWeapon(weaponPrefab);
             Destroy(gameObject);
         }
@@ -31,6 +32,15 @@ public class WeaponPickup : MonoBehaviour
     {
         Debug.Log("Enough Money. Purchasing");
         currencyManager.SpendCurrency(currencyType, weaponType.price);
+    }
+
+    private void HandleAchievement()
+    {
+        if (weaponPrefab.gameObject.name == "Gun")
+            SaveLoad.playerProgression.hasUnlockedRevolver = true;
+        if (weaponPrefab.gameObject.name == "Shotgun")
+            SaveLoad.playerProgression.hasUnlockedShotgun = true;
+        SaveLoad.Save();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
