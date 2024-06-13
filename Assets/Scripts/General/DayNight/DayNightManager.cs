@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +21,7 @@ public class DayNightManager : MonoBehaviour
     public float daytimeLength;
     public float nighttimeLength;
 
+    public static event Action OnNightStart;
 
     private void Start()
     {
@@ -50,8 +52,9 @@ public class DayNightManager : MonoBehaviour
             yield return new WaitForSeconds(daytimeLength);
 
             // Transition to nighttime
-            currentTimeOfDay = TimeOfDay.Night;
             yield return StartCoroutine(Transition(1f, 0.3f, transitionTime));
+            currentTimeOfDay = TimeOfDay.Night;
+            OnNightStart?.Invoke();
             yield return new WaitForSeconds(nighttimeLength);
 
             // Transition to daytime

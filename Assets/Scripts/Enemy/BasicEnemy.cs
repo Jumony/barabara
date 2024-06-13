@@ -31,12 +31,14 @@ public class BasicEnemy : MonoBehaviour, IPooledObject
     private PathRequestManager pathRequestManager;
     private ObjectPooler objectPooler;
     private PlayerStatManager playerStatManager;
+    private EnemySpawner enemySpawner;
 
     private Coroutine selfDestructCoroutine;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        enemySpawner = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>();
         if (rb == null)
         {
             Debug.LogError("Rigidbody2D component not found on the Unit.");
@@ -113,8 +115,8 @@ public class BasicEnemy : MonoBehaviour, IPooledObject
             {
                 gameObject.SetActive(false);
                 objectPooler.SpawnFromPool("Coins", transform.position, transform.rotation);
+                enemySpawner.EnemyDefeated();
             }
-
         }
     }
 

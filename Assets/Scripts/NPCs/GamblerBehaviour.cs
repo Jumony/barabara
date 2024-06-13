@@ -35,9 +35,9 @@ public class GamblerBehaviour : MonoBehaviour
 
     void Gamble()
     {
-        if (!SaveLoad.playerProgression.hasGambled)
+        if (!GameManager.Instance.playerProgression.hasGambled)
         {
-            SaveLoad.playerProgression.hasGambled = true;
+            GameManager.Instance.playerProgression.hasGambled = true;
         }
 
         // Choose a random weapon instance from the list of gambleable items

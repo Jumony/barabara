@@ -5,9 +5,8 @@ using UnityEngine;
 
 public static class SaveLoad
 {
-    public static PlayerProgression playerProgression = new PlayerProgression();
 
-    public static void Save()
+    public static void Save(PlayerProgression playerProgression)
     {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/playerProgression.bara");
@@ -15,14 +14,21 @@ public static class SaveLoad
         file.Close();
     }
 
-    public static void Load()
+    public static PlayerProgression Load()
     {
         if (File.Exists(Application.persistentDataPath + "/playerProgression.bara"))
         {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/playerProgression.bara", FileMode.Open);
-            playerProgression = (PlayerProgression)bf.Deserialize(file);
+            PlayerProgression playerProgression = (PlayerProgression)bf.Deserialize(file);
             file.Close();
+            return playerProgression;
+        }
+
+        // Creates a new PlayerProgression object if one does not already exist
+        else
+        {
+            return new PlayerProgression();
         }
     }
 
@@ -34,7 +40,5 @@ public static class SaveLoad
             File.Delete(path);
             Debug.Log("Save file reset");
         }
-
-        playerProgression = new PlayerProgression();
     }
 }

@@ -37,10 +37,10 @@ public class WeaponPickup : MonoBehaviour
     private void HandleAchievement()
     {
         if (weaponPrefab.gameObject.name == "Gun")
-            SaveLoad.playerProgression.hasUnlockedRevolver = true;
+            GameManager.Instance.playerProgression.hasUnlockedRevolver = true;
         if (weaponPrefab.gameObject.name == "Shotgun")
-            SaveLoad.playerProgression.hasUnlockedShotgun = true;
-        SaveLoad.Save();
+            GameManager.Instance.playerProgression.hasUnlockedShotgun = true;
+        GameManager.Instance.SaveProgress();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

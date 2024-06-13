@@ -34,9 +34,9 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         SaveLoad.Load();
-        Debug.Log("Unlocked Revolver Status: " + SaveLoad.playerProgression.hasUnlockedRevolver);
-        Debug.Log("Unlocked Shotgun Status: " + SaveLoad.playerProgression.hasUnlockedShotgun);
-        Debug.Log("Has Gambled Status: " + SaveLoad.playerProgression.hasGambled);
+        Debug.Log("Unlocked Revolver Status: " + GameManager.Instance.playerProgression.hasUnlockedRevolver);
+        Debug.Log("Unlocked Shotgun Status: " + GameManager.Instance.playerProgression.hasUnlockedShotgun);
+        Debug.Log("Has Gambled Status: " + GameManager.Instance.playerProgression.hasGambled);
         animator = GetComponent<Animator>();
 
         if (weapons.Count == 0)

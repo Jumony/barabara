@@ -6388,6 +6388,54 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &818616909
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 818616911}
+  - component: {fileID: 818616910}
+  m_Layer: 0
+  m_Name: Game Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &818616910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818616909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 509625b3c577a9d439773ff9461b25af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerProgression:
+    hasUnlockedRevolver: 0
+    hasUnlockedShotgun: 0
+    hasGambled: 0
+--- !u!4 &818616911
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818616909}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &822529884
 GameObject:
   m_ObjectHideFlags: 0
@@ -6516,7 +6564,7 @@ MonoBehaviour:
   globalLight: {fileID: 767605642}
   transitionTime: 2
   daytimeLength: 3
-  nighttimeLength: 20
+  nighttimeLength: 60
 --- !u!1 &890254970
 GameObject:
   m_ObjectHideFlags: 0
@@ -25969,8 +26017,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85ae2c8df954e634ea6fef5b982b5368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  center: {x: -11, y: -0.5}
-  size: {x: 5, y: 10}
   spawnAreas:
   - center: {x: -11, y: -0.5}
     size: {x: 5, y: 10}
@@ -25978,13 +26024,14 @@ MonoBehaviour:
     size: {x: 5, y: 10}
   enemies:
   - {fileID: 6927098771506876257, guid: 68899005040347249a2d53aa189419a8, type: 3}
-  waves: 2
-  timeBetweenWaves: 8
-  enemyCount: 2
   spawnIntervalMin: 0
   spawnIntervalMax: 1
-  gracePeriod: 1
+  gracePeriod: 0
   enableGizmos: 1
+  initialWaves: 2
+  initialTimeBetweenWaves: 5
+  initialEnemyCount: 2
+  activeEnemies: 0
 --- !u!4 &2122819535
 Transform:
   m_ObjectHideFlags: 0
@@ -26047,6 +26094,10 @@ PrefabInstance:
     - target: {fileID: 869186445142644461, guid: 144b922dbe6ad1f4891a459f185c43ba, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1128979670671192376, guid: 144b922dbe6ad1f4891a459f185c43ba, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6548589923249950629, guid: 144b922dbe6ad1f4891a459f185c43ba, type: 3}
       propertyPath: m_Name
@@ -26189,6 +26240,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
+  - {fileID: 818616911}
   - {fileID: 822529885}
   - {fileID: 1531638422}
   - {fileID: 879988961}

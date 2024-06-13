@@ -4,17 +4,11 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public Vector2 center;
-    public Vector2 size;
-
     public List<SpawnArea> spawnAreas;
     public GameObject[] enemies;
-    public int waves;
-    public float timeBetweenWaves;
-    public int enemyCount;
+
     public float spawnIntervalMin;
     public float spawnIntervalMax;
-
     private DayNightManager dayNightManager;
     private ObjectPooler objectPooler;
 
@@ -24,13 +18,35 @@ public class EnemySpawner : MonoBehaviour
     public bool enableGizmos;
     private SpawnArea selectedArea;
 
+    [Header("Spawning Behaviour")]
+    public int initialWaves;
+    public float initialTimeBetweenWaves;
+    public int initialEnemyCount;
+
+    private float currentTimeBetweenWaves;
+    private int currentEnemyCount;
+
+    public int activeEnemies = 0; // Counter to track active enemies
+
     private void Start()
     {
         dayNightManager = GameObject.Find("DayNightManager").GetComponent<DayNightManager>();
         objectPooler = GameObject.Find("ObjectPooler").GetComponent<ObjectPooler>();
 
+        currentTimeBetweenWaves = initialTimeBetweenWaves;
+        currentEnemyCount = initialEnemyCount;
+
+        // Subscribe to the night start event
+        DayNightManager.OnNightStart += IncreaseDifficulty;
+
         // Start spawning coroutine
         StartCoroutine(SpawnDuringNight());
+    }
+
+    private void OnDestroy()
+    {
+        // Unsubscribe from the night start event to prevent memory leaks
+        DayNightManager.OnNightStart -= IncreaseDifficulty;
     }
 
     private IEnumerator SpawnDuringNight()
@@ -44,7 +60,7 @@ public class EnemySpawner : MonoBehaviour
                 if (!isSpawning && !gracePeriod)
                 {
                     isSpawning = true;
-                    spawnCoroutine = StartCoroutine(SpawnWaves(enemies, waves, timeBetweenWaves));
+                    spawnCoroutine = StartCoroutine(SpawnWaves(enemies, currentTimeBetweenWaves));
                 }
             }
             else
@@ -67,53 +83,62 @@ public class EnemySpawner : MonoBehaviour
 
     private bool IsNightTime()
     {
-        if (dayNightManager.currentTimeOfDay == DayNightManager.TimeOfDay.Night)
-        {
-            return true;
-        }
-        return false;
+        return dayNightManager.currentTimeOfDay == DayNightManager.TimeOfDay.Night;
     }
 
-    // Precondition: 'enemies' is a valid array of GameObjects
-    //  'waves' is a valid float representing number of waves
-    //  'timeBetweenWaves' is a valid float representing number of time between waves
-    // Postcondition: Calls the SpawnEnemies function 'waves' times waiting a certain number
-    //  between waves. Repeats until it has successfully spawned the given number of waves
-    private IEnumerator SpawnWaves(GameObject[] enemies, int waves, float timeBetweenWaves)
+    private IEnumerator SpawnWaves(GameObject[] enemies, float timeBetweenWaves)
     {
-        for (int i = 0; i < waves; i++)
+        while (true)
         {
             selectedArea = spawnAreas[Random.Range(0, spawnAreas.Count)];
-            yield return StartCoroutine(SpawnEnemies(enemies, enemyCount, spawnIntervalMin, spawnIntervalMax));
+            yield return StartCoroutine(SpawnEnemies(enemies, currentEnemyCount, spawnIntervalMin, spawnIntervalMax));
+
+            // Wait for all enemies to be defeated before proceeding to the next wave
+            yield return new WaitUntil(() => activeEnemies == 0);
+
             yield return new WaitForSeconds(timeBetweenWaves);
         }
-        isSpawning = false; // Reset isSpawning after waves are complete
     }
 
-    // Precondition: enemies is a valid array of GameObjects
-    //  'amount' is a valid float representing number of enemies
-    //  'minTime' is a valid float representing the minimum time in between spawning enemies
-    //  'maxTime' is a valid float representing the maximum time in between spawning enemies
-    // Postcondition: Instantiates the given amount of enemies with a random time in beetween
-    //  buffer
-    private IEnumerator SpawnEnemies(GameObject[] enemies, float amount, float minTime, float maxTime)
+    private IEnumerator SpawnEnemies(GameObject[] enemies, float enemyCount, float minTime, float maxTime)
     {
-        for (int i = 0; i < amount; i++)
+        for (int i = 0; i < enemyCount; i++)
         {
             Vector2 spawnPosition = GetRandomPointInSpawnArea(selectedArea);
             GameObject randomEnemy = enemies[Random.Range(0, enemies.Length)];
             objectPooler.SpawnFromPool(randomEnemy.name, spawnPosition, Quaternion.identity);
+
+            // Increment the active enemies counter when an enemy is spawned
+            activeEnemies++;
+
             yield return new WaitForSeconds(Random.Range(minTime, maxTime));
         }
     }
 
-    // Selects a random spawn area and then returns a random Vector2 in the selected spawn area
     private Vector2 GetRandomPointInSpawnArea(SpawnArea area)
     {
         float randX = Random.Range(area.center.x - area.size.x / 2, area.center.x + area.size.x / 2);
         float randY = Random.Range(area.center.y - area.size.y / 2, area.center.y + area.size.y / 2);
 
         return new Vector2(randX, randY);
+    }
+
+    private void IncreaseDifficulty()
+    {
+        currentEnemyCount += 2;
+
+        spawnIntervalMin = Mathf.Max(0.5f, spawnIntervalMin - 0.1f);
+        spawnIntervalMax = Mathf.Max(1f, spawnIntervalMax - 0.2f);
+
+        Debug.Log("Increased Difficulty: " + $"Spawn Interval Min = {spawnIntervalMin}, " + $"Spawn Interval Max = {spawnIntervalMax}");
+        Debug.Log("Spawn Interval Min = " + spawnIntervalMin);
+        Debug.Log("Spawn Interval Max = " + spawnIntervalMax);
+        Debug.Log("Current Enemy Count = " + currentEnemyCount);
+    }
+
+    public void EnemyDefeated()
+    {
+        activeEnemies--; // Decrement the active enemies counter when an enemy is defeated
     }
 
     private void OnDrawGizmos()
