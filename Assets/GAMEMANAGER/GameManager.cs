@@ -37,4 +37,9 @@ public class GameManager : MonoBehaviour
     {
         SaveLoad.Load();
     }
+
+    public void GameOver()
+    {
+
+    }
 }

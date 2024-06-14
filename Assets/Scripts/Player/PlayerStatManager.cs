@@ -18,6 +18,7 @@ public class PlayerStatManager : MonoBehaviour
         Debug.Log("Took damage: Health is now " + currentHealth);
         if (currentHealth <= 0)
         {
+            GameManager.Instance.GameOver();
             Debug.Log("GameOver: Player health reached 0");
         }
     }

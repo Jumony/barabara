@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3959174927185913534}
   - component: {fileID: 4628015109982032266}
   - component: {fileID: 2687112473593643267}
+  - component: {fileID: -235991362730174642}
   m_Layer: 0
   m_Name: BasicEnemy
   m_TagString: Enemy
@@ -158,16 +159,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 6927098771506876257}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 135a963b000cecc4dbec38f6d39e9b8d, type: 3}
+  m_Script: {fileID: 11500000, guid: 29bc98dfa43713946814956cdcb4230a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
   basicEnemy: {fileID: 11400000, guid: f52c9a58534507d4cb7f418ec5c5eec3, type: 2}
-  target: {fileID: 0}
+  target: {fileID: 869186445142644461, guid: 144b922dbe6ad1f4891a459f185c43ba, type: 3}
   stoppingDistance: 0.5
   detectionRadius: 1
   bufferDistance: 0.5
   pathUpdateInterval: 0.1
+--- !u!114 &-235991362730174642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6927098771506876257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 125d88df97dd6974fb2175c9ee67b541, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   selfDestructRange: 1
   selfDestructTime: 1
   selfDestructDamage: 25
+  target: {fileID: 869186445142644461, guid: 144b922dbe6ad1f4891a459f185c43ba, type: 3}
