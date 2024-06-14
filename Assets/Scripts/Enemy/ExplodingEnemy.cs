@@ -31,8 +31,6 @@ public class ExplodingEnemy : MonoBehaviour
     void Update()
     {
         Debug.DrawRay(transform.position, transform.right * selfDestructRange, Color.green);
-        Debug.Log("target.position = " + target.position);
-        Debug.Log("Distance from Player: " + Vector2.Distance(transform.position, target.position));
         if (selfDestructCoroutine == null && Vector2.Distance(transform.position, target.position) < selfDestructRange)
         {
             Debug.Log("Got into the if loop");
