@@ -14,7 +14,7 @@ public class ExplodingEnemy : MonoBehaviour
 
     private Coroutine selfDestructCoroutine;
     private Rigidbody2D rb;
-    public Transform target;
+    private Transform target;
     private PlayerStatManager playerStatManager;
     private EnemySpawner enemySpawner;
 
@@ -24,12 +24,15 @@ public class ExplodingEnemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         playerStatManager = GameObject.Find("Player").GetComponent<PlayerStatManager>();
         enemySpawner = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>();
+        target = GameObject.Find("Player").GetComponent<Transform>();
     }
 
     // Update is called once per frame
     void Update()
     {
         Debug.DrawRay(transform.position, transform.right * selfDestructRange, Color.green);
+        Debug.Log("target.position = " + target.position);
+        Debug.Log("Distance from Player: " + Vector2.Distance(transform.position, target.position));
         if (selfDestructCoroutine == null && Vector2.Distance(transform.position, target.position) < selfDestructRange)
         {
             Debug.Log("Got into the if loop");

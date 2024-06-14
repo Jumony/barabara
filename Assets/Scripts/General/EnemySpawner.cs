@@ -129,11 +129,6 @@ public class EnemySpawner : MonoBehaviour
 
         spawnIntervalMin = Mathf.Max(0.5f, spawnIntervalMin - 0.1f);
         spawnIntervalMax = Mathf.Max(1f, spawnIntervalMax - 0.2f);
-
-        Debug.Log("Increased Difficulty: " + $"Spawn Interval Min = {spawnIntervalMin}, " + $"Spawn Interval Max = {spawnIntervalMax}");
-        Debug.Log("Spawn Interval Min = " + spawnIntervalMin);
-        Debug.Log("Spawn Interval Max = " + spawnIntervalMax);
-        Debug.Log("Current Enemy Count = " + currentEnemyCount);
     }
 
     public void EnemyDefeated()

@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 125d88df97dd6974fb2175c9ee67b541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selfDestructRange: 1
+  selfDestructRange: 2
   selfDestructTime: 1
   selfDestructDamage: 25
   target: {fileID: 869186445142644461, guid: 144b922dbe6ad1f4891a459f185c43ba, type: 3}
