@@ -11,11 +11,9 @@ public class BasicPathfinding : MonoBehaviour, IPooledObject
     [Header("Pathfinding")]
     public Transform target;
     public float stoppingDistance = 0.5f;
-    public float detectionRadius;
-    public float bufferDistance;
+    public float detectionRadius = 1f;
+    public float bufferDistance = 0.5f;
     public float pathUpdateInterval = 0.1f; // Interval in seconds to update the path
-
-
 
     private Vector3[] path;
     private int targetIndex;

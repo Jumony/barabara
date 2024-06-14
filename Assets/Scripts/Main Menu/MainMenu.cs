@@ -23,4 +23,12 @@ public class MainMenu : MonoBehaviour
             Debug.LogError("Game Manager is null");
         }
     }
+
+    public void QuitGame()
+    {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.QuitGame();
+        }
+    }
 }
