@@ -8,6 +8,9 @@ public class DefaultShotgun : MonoBehaviour, IGunBehaviour
     private ObjectPooler objectPooler;
     private float[] shootAngleOffsets = { 30, 60, 90, 120, 150 };
 
+    public float fireRate = 0.5f;
+    private float nextFireTime = 0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,9 +20,10 @@ public class DefaultShotgun : MonoBehaviour, IGunBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && Time.time >= nextFireTime)
         {
             Shoot();
+            nextFireTime = Time.time + fireRate;
         }
     }
 
