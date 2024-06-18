@@ -113,6 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04897a15c9935414fb038b9cec0bbe16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerWeaponType: {fileID: 11400000, guid: 7739d10546131fd4b8d8ca1b9c5f4ca9, type: 2}
   shootOrigin: {fileID: 7118294155961438580}
   fireRate: 1
 --- !u!1 &8069637460814563585

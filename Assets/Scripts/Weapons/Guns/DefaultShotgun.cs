@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DefaultShotgun : MonoBehaviour, IGunBehaviour
 {
+    public PlayerWeaponType playerWeaponType;
     public Transform shootOrigin;
     private ObjectPooler objectPooler;
     private float[] shootAngleOffsets = { 30, 60, 90, 120, 150 };
@@ -41,6 +42,11 @@ public class DefaultShotgun : MonoBehaviour, IGunBehaviour
 
     public void Reload()
     {
+        return;
+    }
 
+    public PlayerWeaponType GetWeaponType()
+    {
+        return playerWeaponType;
     }
 }

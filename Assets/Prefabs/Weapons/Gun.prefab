@@ -114,6 +114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootOrigin: {fileID: 6661408929581028753}
+  playerWeaponType: {fileID: 11400000, guid: 51b18865bd3a0bc4489062e48bfcf559, type: 2}
   fireRate: 0.5
 --- !u!1 &3980426635440733790
 GameObject:

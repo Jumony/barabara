@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GamblerBehaviour : MonoBehaviour
 {
-    public List<GameObject> GambleableItems;
+    public List<PlayerWeaponType> GambleableItems;
     private PlayerController playerController;
     private CurrencyManager currencyManager;
     public CurrencyType currencyType;
@@ -35,19 +35,31 @@ public class GamblerBehaviour : MonoBehaviour
 
     void Gamble()
     {
+        if (playerController == null)
+        {
+            Debug.LogError("PlayerController is null. Cannot gamble.");
+            return;
+        }
+
+        if (playerController.weapons == null)
+        {
+            Debug.LogError("Player's weapons list is null. Cannot gamble.");
+            return;
+        }
+
         if (!GameManager.Instance.playerProgression.hasGambled)
         {
             GameManager.Instance.playerProgression.hasGambled = true;
         }
 
         // Choose a random weapon instance from the list of gambleable items
-        GameObject randomWeaponInstance = GambleableItems[Random.Range(0, GambleableItems.Count)];
+        PlayerWeaponType randomWeaponInstance = GambleableItems[Random.Range(0, GambleableItems.Count)];
 
         // Check if the random weapon instance is already in the player's inventory
         foreach (GameObject weaponInstance in playerController.weapons)
         {
-            string randomWeaponInstanceName = randomWeaponInstance.name + "(Clone)";
-            if (weaponInstance.name == randomWeaponInstanceName)
+            IGunBehaviour weaponBehaviour = weaponInstance.GetComponent<IGunBehaviour>();
+            if (weaponBehaviour != null && weaponBehaviour.GetWeaponType().weaponID == randomWeaponInstance.weaponID)
             {
                 Debug.Log("Found duplicate item, refunding some money");
                 currencyManager.AddCurrency(currencyType, 2);
@@ -56,7 +68,7 @@ public class GamblerBehaviour : MonoBehaviour
         }
 
         Debug.Log("Found a unique weapon, adding it to inventory");
-        playerController.PickUpWeapon(randomWeaponInstance);
+        playerController.PickUpWeapon(randomWeaponInstance.gunPrefab);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

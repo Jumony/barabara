@@ -6,4 +6,5 @@ public interface IGunBehaviour
 {
     void Shoot();
     void Reload();
+    PlayerWeaponType GetWeaponType();
 }

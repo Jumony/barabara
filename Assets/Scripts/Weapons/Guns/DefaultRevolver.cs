@@ -6,6 +6,7 @@ public class DefaultRevolver : MonoBehaviour, IGunBehaviour
 {
     public Transform shootOrigin;
     private ObjectPooler objectPooler;
+    public PlayerWeaponType playerWeaponType;
 
     public float fireRate;
     private float nextFireTime = 0f;
@@ -35,5 +36,10 @@ public class DefaultRevolver : MonoBehaviour, IGunBehaviour
     public void Reload()
     {
         return;
+    }
+
+    public PlayerWeaponType GetWeaponType()
+    {
+        return playerWeaponType;
     }
 }
