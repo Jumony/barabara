@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f2b36d6be25df548a623942656b7b78, type: 3}
   m_Name: MeleeEnemy
   m_EditorClassIdentifier: 
+  prefab: {fileID: 4281188088970796608, guid: 65cfc8b51a42bbb41a15cb1a8c6951c9, type: 3}
   health: 100
   moveSpeed: 750
   damage: 10
+  spawnWeight: 1

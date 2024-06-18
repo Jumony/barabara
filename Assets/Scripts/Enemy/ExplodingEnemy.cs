@@ -9,6 +9,7 @@ public class ExplodingEnemy : MonoBehaviour, IPooledObject, IDamageable
     public float health;
     public float speed;
     public float attackDamage;
+    public float spawnWeight;
 
     [Header("Self Destruct")]
     [Tooltip("Distance from player before enemy begins self-destruct sequence")]
@@ -38,6 +39,7 @@ public class ExplodingEnemy : MonoBehaviour, IPooledObject, IDamageable
     public void OnObjectSpawn()
     {
         basicPathfinding = GetComponent<BasicPathfinding>();
+
         health = basicEnemy.health;
         speed = basicEnemy.moveSpeed;
         attackDamage = basicEnemy.damage;

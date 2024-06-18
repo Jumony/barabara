@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
     public List<SpawnArea> spawnAreas;
-    public GameObject[] enemies;
+    public List<EnemySpawnData> enemySpawnDataList;
 
     public float spawnIntervalMin;
     public float spawnIntervalMax;
@@ -26,7 +27,7 @@ public class EnemySpawner : MonoBehaviour
     private float currentTimeBetweenWaves;
     private int currentEnemyCount;
 
-    public int activeEnemies = 0; // Counter to track active enemies
+    private int activeEnemies = 0; // Counter to track active enemies
 
     private void Start()
     {
@@ -60,7 +61,7 @@ public class EnemySpawner : MonoBehaviour
                 if (!isSpawning && !gracePeriod)
                 {
                     isSpawning = true;
-                    spawnCoroutine = StartCoroutine(SpawnWaves(enemies, currentTimeBetweenWaves));
+                    spawnCoroutine = StartCoroutine(SpawnWaves(currentTimeBetweenWaves));
                 }
             }
             else
@@ -86,12 +87,12 @@ public class EnemySpawner : MonoBehaviour
         return dayNightManager.currentTimeOfDay == DayNightManager.TimeOfDay.Night;
     }
 
-    private IEnumerator SpawnWaves(GameObject[] enemies, float timeBetweenWaves)
+    private IEnumerator SpawnWaves(float timeBetweenWaves)
     {
         while (true)
         {
             selectedArea = spawnAreas[Random.Range(0, spawnAreas.Count)];
-            yield return StartCoroutine(SpawnEnemies(enemies, currentEnemyCount, spawnIntervalMin, spawnIntervalMax));
+            yield return StartCoroutine(SpawnEnemies(currentEnemyCount, spawnIntervalMin, spawnIntervalMax));
 
             // Wait for all enemies to be defeated before proceeding to the next wave
             yield return new WaitUntil(() => activeEnemies == 0);
@@ -100,12 +101,12 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    private IEnumerator SpawnEnemies(GameObject[] enemies, float enemyCount, float minTime, float maxTime)
+    private IEnumerator SpawnEnemies(float enemyCount, float minTime, float maxTime)
     {
         for (int i = 0; i < enemyCount; i++)
         {
             Vector2 spawnPosition = GetRandomPointInSpawnArea(selectedArea);
-            GameObject randomEnemy = enemies[Random.Range(0, enemies.Length)];
+            GameObject randomEnemy = GetRandomEnemyBasedOnWeight();
             objectPooler.SpawnFromPool(randomEnemy.name, spawnPosition, Quaternion.identity);
 
             // Increment the active enemies counter when an enemy is spawned
@@ -113,6 +114,28 @@ public class EnemySpawner : MonoBehaviour
 
             yield return new WaitForSeconds(Random.Range(minTime, maxTime));
         }
+    }
+
+    private GameObject GetRandomEnemyBasedOnWeight()
+    {
+        float totalWeight = 0f;
+        foreach (EnemySpawnData spawnData in enemySpawnDataList)
+        {
+            totalWeight += spawnData.spawnWeight;
+        }
+
+        float randomWeight = Random.Range(0, totalWeight);
+        foreach (EnemySpawnData spawnData in enemySpawnDataList)
+        {
+            if (randomWeight < spawnData.spawnWeight)
+            {
+                return spawnData.enemyType.prefab;
+            }
+
+            randomWeight -= spawnData.spawnWeight;
+        }
+
+        return enemySpawnDataList[0].enemyType.prefab;
     }
 
     private Vector2 GetRandomPointInSpawnArea(SpawnArea area)

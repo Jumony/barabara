@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f2b36d6be25df548a623942656b7b78, type: 3}
   m_Name: BasicEnemy
   m_EditorClassIdentifier: 
+  prefab: {fileID: 6927098771506876257, guid: 68899005040347249a2d53aa189419a8, type: 3}
   health: 100
   moveSpeed: 750
   damage: 10
+  spawnWeight: 2

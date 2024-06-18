@@ -26078,9 +26078,11 @@ MonoBehaviour:
     size: {x: 5, y: 10}
   - center: {x: 11, y: -0.5}
     size: {x: 5, y: 10}
-  enemies:
-  - {fileID: 6927098771506876257, guid: 68899005040347249a2d53aa189419a8, type: 3}
-  - {fileID: 4281188088970796608, guid: 65cfc8b51a42bbb41a15cb1a8c6951c9, type: 3}
+  enemySpawnDataList:
+  - enemyType: {fileID: 11400000, guid: f52c9a58534507d4cb7f418ec5c5eec3, type: 2}
+    spawnWeight: 3
+  - enemyType: {fileID: 11400000, guid: ca5cab8e3aed9e648ab7bd1205f71642, type: 2}
+    spawnWeight: 1
   spawnIntervalMin: 0
   spawnIntervalMax: 1
   gracePeriod: 0
@@ -26088,7 +26090,6 @@ MonoBehaviour:
   initialWaves: 2
   initialTimeBetweenWaves: 5
   initialEnemyCount: 2
-  activeEnemies: 0
 --- !u!4 &2122819535
 Transform:
   m_ObjectHideFlags: 0

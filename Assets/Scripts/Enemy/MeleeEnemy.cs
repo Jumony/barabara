@@ -9,6 +9,7 @@ public class MeleeEnemy : MonoBehaviour, IPooledObject, IDamageable
     public float health;
     public float speed;
     public float attackDamage;
+    public float spawnWeight;
 
     private Rigidbody2D rb;
     private Transform target;
@@ -29,9 +30,11 @@ public class MeleeEnemy : MonoBehaviour, IPooledObject, IDamageable
     public void OnObjectSpawn()
     {
         basicPathfinding = GetComponent<BasicPathfinding>();
+
         health = meleeEnemy.health;
         speed = meleeEnemy.moveSpeed;
         attackDamage = meleeEnemy.damage;
+
         target = GameObject.FindGameObjectWithTag("Player").transform;
         basicPathfinding.target = target;
         StartCoroutine(basicPathfinding.UpdatePath());
