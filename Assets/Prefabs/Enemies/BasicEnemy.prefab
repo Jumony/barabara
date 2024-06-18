@@ -181,6 +181,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 125d88df97dd6974fb2175c9ee67b541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  basicEnemy: {fileID: 11400000, guid: f52c9a58534507d4cb7f418ec5c5eec3, type: 2}
+  health: 0
+  speed: 0
+  damage: 0
   selfDestructRange: 2
   selfDestructTime: 1
   selfDestructDamage: 25

@@ -49,8 +49,11 @@ public class RevolverBulletBehaviour : MonoBehaviour, IPooledObject
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            BasicPathfinding enemyScript = collision.gameObject.GetComponent<BasicPathfinding>();
-            enemyScript.TakeDamage(projectileDamage);
+            IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
+            if (damageable != null)
+            {
+                damageable.TakeDamage(projectileDamage);
+            }
             gameObject.SetActive(false);
         }
         else

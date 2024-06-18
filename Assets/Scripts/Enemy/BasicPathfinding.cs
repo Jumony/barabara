@@ -2,7 +2,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class BasicPathfinding : MonoBehaviour, IPooledObject
+public class BasicPathfinding : MonoBehaviour
 {
     [Header("Stats")]
     public float speed = 5f;
@@ -44,14 +44,6 @@ public class BasicPathfinding : MonoBehaviour, IPooledObject
 
     }
 
-    public void OnObjectSpawn()
-    {
-        health = basicEnemy.health;
-        damage = basicEnemy.damage;
-        target = GameObject.FindGameObjectWithTag("Player").transform;
-        StartCoroutine(UpdatePath());
-    }
-
     private void Update()
     {
         Debug.DrawRay(transform.position, transform.right * bufferDistance, Color.green);
@@ -88,22 +80,7 @@ public class BasicPathfinding : MonoBehaviour, IPooledObject
         }
     }
 
-    public void TakeDamage(float damageTaken)
-    {
-        health -= damageTaken;
-        if (health <= 0)
-        {
-            // Makes sure to only spawn one coin
-            if (gameObject.activeSelf)
-            {
-                gameObject.SetActive(false);
-                objectPooler.SpawnFromPool("Coins", transform.position, transform.rotation);
-                enemySpawner.EnemyDefeated();
-            }
-        }
-    }
-
-    private IEnumerator UpdatePath()
+    public IEnumerator UpdatePath()
     {
         while (true)
         {

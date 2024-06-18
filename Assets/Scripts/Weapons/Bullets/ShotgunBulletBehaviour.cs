@@ -40,8 +40,8 @@ public class ShotgunBulletBehaviour : MonoBehaviour, IPooledObject
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            BasicPathfinding enemyScript = collision.gameObject.GetComponent<BasicPathfinding>();
-            enemyScript.TakeDamage(projectileDamage);
+            IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
+            damageable.TakeDamage(projectileDamage);
             Debug.Log("Collision found");
             gameObject.SetActive(false);
         }

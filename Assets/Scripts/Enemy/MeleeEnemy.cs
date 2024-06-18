@@ -2,23 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExplodingEnemy : MonoBehaviour, IPooledObject, IDamageable
+public class MeleeEnemy : MonoBehaviour, IPooledObject, IDamageable
 {
-    public EnemyType basicEnemy;
-
+    public EnemyType meleeEnemy;
+    public float meleeRange = 1f;
     public float health;
     public float speed;
     public float attackDamage;
 
-    [Header("Self Destruct")]
-    [Tooltip("Distance from player before enemy begins self-destruct sequence")]
-    public float selfDestructRange;
-    [Tooltip("Amount of time it takes to blow up (Should match animation time)")]
-    public float selfDestructTime;
-    [Tooltip("Damage done to player if player is in range of explosion")]
-    public int selfDestructDamage;
-
-    private Coroutine selfDestructCoroutine;
     private Rigidbody2D rb;
     private Transform target;
     private PlayerStatManager playerStatManager;
@@ -38,10 +29,9 @@ public class ExplodingEnemy : MonoBehaviour, IPooledObject, IDamageable
     public void OnObjectSpawn()
     {
         basicPathfinding = GetComponent<BasicPathfinding>();
-        health = basicEnemy.health;
-        speed = basicEnemy.moveSpeed;
-        attackDamage = basicEnemy.damage;
-
+        health = meleeEnemy.health;
+        speed = meleeEnemy.moveSpeed;
+        attackDamage = meleeEnemy.damage;
         target = GameObject.FindGameObjectWithTag("Player").transform;
         basicPathfinding.target = target;
         StartCoroutine(basicPathfinding.UpdatePath());
@@ -50,27 +40,17 @@ public class ExplodingEnemy : MonoBehaviour, IPooledObject, IDamageable
     // Update is called once per frame
     void Update()
     {
-        Debug.DrawRay(transform.position, transform.right * selfDestructRange, Color.green);
-        if (selfDestructCoroutine == null && Vector2.Distance(transform.position, target.position) < selfDestructRange)
+        if (Vector2.Distance(transform.position, target.position) < meleeRange)
         {
-            Debug.Log("Got into the if loop");
-            selfDestructCoroutine = StartCoroutine(SelfDestruct());
+            StartCoroutine(MeleeAttack());
         }
     }
 
-    private IEnumerator SelfDestruct()
+    private IEnumerator MeleeAttack()
     {
         rb.velocity = Vector2.zero;
-        // Play animation
-        yield return new WaitForSeconds(selfDestructTime);
-        // Damage player
-        if (Vector2.Distance(transform.position, target.position) <= selfDestructRange)
-        {
-            playerStatManager.TakeDamage(selfDestructDamage);
-        }
-        enemySpawner.EnemyDefeated();
-        gameObject.SetActive(false);
-        //Spawn explosion effect
+        yield return new WaitForSeconds(2);
+        playerStatManager.TakeDamage(attackDamage);
     }
 
     public void TakeDamage(float damage)
