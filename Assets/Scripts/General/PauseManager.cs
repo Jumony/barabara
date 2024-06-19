@@ -1,11 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
 {
-    public GameObject pauseMenu;
     public float pauseSpeed = 0.2f;
     public bool isPaused = false;
     private Coroutine pauseCoroutine;
@@ -21,18 +19,15 @@ public class PauseManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape) && !isPaused)
         {
-            StartPauseAnimation();
-            EnablePauseMenu();
-            
+            StartPause();
         }
         else if (Input.GetKeyDown(KeyCode.Escape) && isPaused)
         {
             UnpauseGame();
-            DisablePauseMenu();
         }
     }
 
-    private void StartPauseAnimation()
+    private void StartPause()
     {
         if (pauseCoroutine != null)
         {
@@ -58,33 +53,11 @@ public class PauseManager : MonoBehaviour
 
     private void UnpauseGame()
     {
-        if (pauseCoroutine != null && isPaused)
+        if (pauseCoroutine != null)
         {
             StopCoroutine(pauseCoroutine);
         }
         Time.timeScale = 1f;
         isPaused = false;
-    }
-
-    private void EnablePauseMenu()
-    {
-        pauseMenu.SetActive(true);
-    }
-
-    private void DisablePauseMenu()
-    {
-        pauseMenu.SetActive(false);
-    }
-
-    public void ToMainMenu()
-    {
-        UnpauseGame();
-        SceneManager.LoadScene("MainMenu");
-    }
-
-    public void Resume()
-    {
-        UnpauseGame();
-        DisablePauseMenu();
     }
 }

@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
     {
         // Calculates the angle from the player to the mouse position
         Vector2 moveDirection = new Vector2(horizontalInput, verticalInput).normalized;
-        rb.velocity = moveDirection * speed * Time.fixedDeltaTime;
+        rb.velocity = moveDirection * speed * Time.deltaTime;
 
         Vector2 lookDirection = mousePos - weaponRotation.gameObject.transform.position;
 
