@@ -27084,12 +27084,12 @@ MonoBehaviour:
     size: {x: 5, y: 10}
   enemySpawnDataList:
   - enemyType: {fileID: 11400000, guid: f52c9a58534507d4cb7f418ec5c5eec3, type: 2}
-    spawnWeight: 3
+    spawnWeight: 0
   - enemyType: {fileID: 11400000, guid: ca5cab8e3aed9e648ab7bd1205f71642, type: 2}
     spawnWeight: 1
   spawnIntervalMin: 0
   spawnIntervalMax: 1
-  gracePeriod: 1
+  gracePeriod: 0
   enableGizmos: 1
   initialWaves: 2
   initialTimeBetweenWaves: 5

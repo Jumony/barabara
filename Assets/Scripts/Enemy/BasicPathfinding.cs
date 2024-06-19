@@ -6,7 +6,7 @@ public class BasicPathfinding : MonoBehaviour
 {
     [Header("Stats")]
     public float speed = 5f;
-    public EnemyType basicEnemy;
+    public EnemyType enemyType;
 
     [Header("Pathfinding")]
     public Transform target;
@@ -18,23 +18,19 @@ public class BasicPathfinding : MonoBehaviour
     private Vector3[] path;
     private int targetIndex;
     private Rigidbody2D rb;
-    private float health;
-    private float damage;
     private PathRequestManager pathRequestManager;
-    private ObjectPooler objectPooler;
-    private EnemySpawner enemySpawner;
 
     private void Start()
     {
+        speed = enemyType.moveSpeed;
+
         rb = GetComponent<Rigidbody2D>();
-        enemySpawner = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>();
         if (rb == null)
         {
             Debug.LogError("Rigidbody2D component not found on the Unit.");
             return;
         }
 
-        objectPooler = ObjectPooler.Instance;
         pathRequestManager = FindObjectOfType<PathRequestManager>(); // Find Pathfinding script
         if (pathRequestManager == null)
         {

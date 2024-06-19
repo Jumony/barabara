@@ -16,12 +16,10 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
             playerProgression = new PlayerProgression();
-            Debug.Log("GameManager initialized");
         }
         else
         {
             Destroy(gameObject);
-            Debug.Log("Duplicate GameManager destroyed");
         }
     }
 

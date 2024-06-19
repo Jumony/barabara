@@ -1,9 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,8 +15,6 @@ public class PlayerController : MonoBehaviour
 
     public Rigidbody2D rb;
 
-    public GameObject bulletPrefab;
-    public GameObject enemyPrefab;
     private GameObject currentWeapon;
     public GameObject defaultFists;
 
@@ -35,9 +31,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         SaveLoad.Load();
-        Debug.Log("Unlocked Revolver Status: " + GameManager.Instance.playerProgression.hasUnlockedRevolver);
-        Debug.Log("Unlocked Shotgun Status: " + GameManager.Instance.playerProgression.hasUnlockedShotgun);
-        Debug.Log("Has Gambled Status: " + GameManager.Instance.playerProgression.hasGambled);
         animator = GetComponent<Animator>();
 
         if (weapons.Count == 0)
@@ -57,11 +50,6 @@ public class PlayerController : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SpawnEnemy();
-        }
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
@@ -150,11 +138,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void SpawnEnemy()
-    {
-        Instantiate(enemyPrefab, transform.position * Vector2.right * 3, transform.rotation);
-    }
-
     public void PickUpWeapon(GameObject weaponPrefab)
     {
         if (currentWeapon != null)
@@ -172,7 +155,6 @@ public class PlayerController : MonoBehaviour
             currentWeaponIndex = weapons.Count - 1;
             ActivateWeapon(currentWeaponIndex);
         }
-
     }
 
     private void SpawnWithFist(GameObject fistsPrefab)

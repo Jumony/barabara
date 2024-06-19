@@ -9,6 +9,7 @@ public class ShotgunBulletBehaviour : MonoBehaviour, IPooledObject
 
     private float projectileSpeed;
     private float projectileDamage;
+    public float bulletLifetime = 0.5f;
     private float startTime;
 
     public void OnObjectSpawn()
@@ -17,19 +18,16 @@ public class ShotgunBulletBehaviour : MonoBehaviour, IPooledObject
         projectileDamage = bulletData.damage;
         startTime = Time.time;
 
-        Physics2D.IgnoreCollision(GetComponent<Collider2D>(), GameObject.Find("Tilemap_Water").GetComponent<Collider2D>());
-
         int bulletLayer = LayerMask.NameToLayer("IgnoreBulletCollision");
-
         Physics2D.IgnoreLayerCollision(gameObject.layer, bulletLayer);
-
+        Physics2D.IgnoreCollision(GetComponent<Collider2D>(), GameObject.Find("Tilemap_Water").GetComponent<Collider2D>());
         Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Player"));
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Time.time - startTime > 0.5f)
+        if (Time.time - startTime > bulletLifetime)
         {
             gameObject.SetActive(false);
         }
