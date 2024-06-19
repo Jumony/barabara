@@ -50,6 +50,7 @@ public class GamblerBehaviour : MonoBehaviour
         if (!GameManager.Instance.playerProgression.hasGambled)
         {
             GameManager.Instance.playerProgression.hasGambled = true;
+            GameManager.Instance.SaveProgress();
         }
 
         // Choose a random weapon instance from the list of gambleable items
@@ -69,6 +70,7 @@ public class GamblerBehaviour : MonoBehaviour
 
         Debug.Log("Found a unique weapon, adding it to inventory");
         playerController.PickUpWeapon(randomWeaponInstance.gunPrefab);
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

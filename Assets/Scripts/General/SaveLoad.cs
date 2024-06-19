@@ -10,6 +10,7 @@ public static class SaveLoad
     {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/playerProgression.bara");
+
         bf.Serialize(file, playerProgression);
         file.Close();
     }

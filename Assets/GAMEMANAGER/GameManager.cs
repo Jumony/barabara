@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        LoadProgress();
+
         if (Instance == null)
         {
             Instance = this;

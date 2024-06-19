@@ -18,7 +18,6 @@ public class CurrencyManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
             currencyBalances = new Dictionary<CurrencyType, int>();
         }
         else
@@ -38,24 +37,6 @@ public class CurrencyManager : MonoBehaviour
 
         coinText.text = coinBalance.ToString();
         LoadCurrency();
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            SpendCurrency(coin, 1);
-        }
-
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            AddCurrency(coin, 1);
-        }
-
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            Debug.Log(GetBalance(coin));
-        }
     }
 
     public int GetBalance(CurrencyType currencyType)
@@ -89,7 +70,6 @@ public class CurrencyManager : MonoBehaviour
             Debug.LogWarning("Not enough currency");
         }
 
-        //Debug.Log("New balance is: " + currencyBalances[currencyType]);
         coinText.text = currencyBalances[currencyType].ToString();
         SaveCurrency();
     }

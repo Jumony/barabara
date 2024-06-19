@@ -5773,7 +5773,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: '{currency}'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6040,8 +6040,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GambleableItems:
-  - {fileID: 2735431840345228025, guid: cf0d2d8e2fec4f343acedb2b43885d47, type: 3}
-  - {fileID: 7695977494905872872, guid: 3304f82f94a9cc848b62181eb51d7383, type: 3}
+  - {fileID: 11400000, guid: 51b18865bd3a0bc4489062e48bfcf559, type: 2}
+  - {fileID: 11400000, guid: 7739d10546131fd4b8d8ca1b9c5f4ca9, type: 2}
   currencyType: {fileID: 11400000, guid: 593b119a12e9e524cb6199cca16a62ec, type: 2}
 --- !u!61 &655585288
 BoxCollider2D:
@@ -26085,7 +26085,7 @@ MonoBehaviour:
     spawnWeight: 1
   spawnIntervalMin: 0
   spawnIntervalMax: 1
-  gracePeriod: 0
+  gracePeriod: 1
   enableGizmos: 1
   initialWaves: 2
   initialTimeBetweenWaves: 5
