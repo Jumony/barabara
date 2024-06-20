@@ -9,6 +9,7 @@ public class WeaponPickup : MonoBehaviour
     private PlayerController playerController;
     private CurrencyManager currencyManager;
     public CurrencyType currencyType;
+    public RadialMenu radialMenu;
     private bool playerInRange;
 
     private void Start()
@@ -23,6 +24,10 @@ public class WeaponPickup : MonoBehaviour
         {
             HandleTransaction();
             HandleAchievement();
+
+            radialMenu.AddGunToRadialInventory(weaponType);
+            radialMenu.PopulateRadialMenu();
+
             playerController.PickUpWeapon(weaponPrefab);
             Destroy(gameObject);
         }

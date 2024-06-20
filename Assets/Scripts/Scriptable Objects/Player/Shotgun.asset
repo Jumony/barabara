@@ -17,3 +17,4 @@ MonoBehaviour:
   damage: 20
   price: 1
   gunPrefab: {fileID: 7695977494905872872, guid: 3304f82f94a9cc848b62181eb51d7383, type: 3}
+  sprite: {fileID: 21300000, guid: 7e72d885f6f717042b7a73bde22dcfb7, type: 3}

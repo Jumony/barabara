@@ -19,8 +19,8 @@ public class PlayerController : MonoBehaviour
     public GameObject defaultFists;
 
     private Animator animator;
-
     private WeaponRotation weaponRotation;
+    public RadialMenu radialMenu;
 
     public List<GameObject> weapons = new List<GameObject>(); 
     private int currentWeaponIndex = 0;
@@ -53,7 +53,12 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            SwitchWeapon();
+            radialMenu.centerPoint.gameObject.SetActive(true);
+        }
+
+        if (Input.GetKeyUp(KeyCode.Tab))
+        {
+            radialMenu.centerPoint.gameObject.SetActive(false);
         }
     }
 
@@ -166,11 +171,11 @@ public class PlayerController : MonoBehaviour
         ActivateWeapon(currentWeaponIndex);
     }
 
-    void SwitchWeapon()
+    public void SwitchWeapon(int index)
     {
-        if (weapons.Count == 0) return;
-        currentWeapon.SetActive(false);
-        currentWeaponIndex = (currentWeaponIndex + 1) % weapons.Count;
+        if (weapons.Count == 0 || index < 0 || index >= weapons.Count) return;
+        if (currentWeapon != null) currentWeapon.SetActive(false);
+        currentWeaponIndex = index;
 
         ActivateWeapon(currentWeaponIndex);
     }
