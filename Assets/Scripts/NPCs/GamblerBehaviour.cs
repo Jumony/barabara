@@ -9,6 +9,7 @@ public class GamblerBehaviour : MonoBehaviour
     private PlayerController playerController;
     private CurrencyManager currencyManager;
     public CurrencyType currencyType;
+    public RadialMenu radialMenu;
     private bool inRange;
 
     // Start is called before the first frame update
@@ -70,6 +71,9 @@ public class GamblerBehaviour : MonoBehaviour
 
         Debug.Log("Found a unique weapon, adding it to inventory");
         playerController.PickUpWeapon(randomWeaponInstance.gunPrefab);
+
+        radialMenu.AddGunToRadialInventory(randomWeaponInstance);
+        radialMenu.PopulateRadialMenu();
         
     }
 
