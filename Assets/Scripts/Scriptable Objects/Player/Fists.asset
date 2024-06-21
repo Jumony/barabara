@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1d7d600783b5a244909cc2d6665c127, type: 3}
   m_Name: Fists
   m_EditorClassIdentifier: 
-  weaponID: 0
+  weaponID: 2
   projectileSpeed: 0
   damage: 0
   price: 0
-  gunPrefab: {fileID: 0}
+  gunPrefab: {fileID: 1471827734265957601, guid: 003a047522cd06e409d9cd5d2035e6fe, type: 3}
   sprite: {fileID: 0}

@@ -6313,6 +6313,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 51b18865bd3a0bc4489062e48bfcf559, type: 2}
   - {fileID: 11400000, guid: 7739d10546131fd4b8d8ca1b9c5f4ca9, type: 2}
   currencyType: {fileID: 11400000, guid: 593b119a12e9e524cb6199cca16a62ec, type: 2}
+  radialMenu: {fileID: 1817169435}
 --- !u!61 &655585288
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -26760,7 +26761,7 @@ MonoBehaviour:
   buttonPrefab: {fileID: 851627579805183953, guid: bfa1a4b102eed2e44887ced1231a41e8, type: 3}
   playerController: {fileID: 5492530434551711403}
   centerPoint: {fileID: 1520505632}
-  radius: 100
+  radius: 300
 --- !u!4 &1817169436
 Transform:
   m_ObjectHideFlags: 0

@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Tab))
         {
             radialMenu.centerPoint.gameObject.SetActive(false);
+            SelectHighlightedWeapon();
         }
     }
 
@@ -186,5 +187,14 @@ public class PlayerController : MonoBehaviour
         currentWeapon = weapons[index];
         currentWeapon.SetActive(true);
         weaponRotation = currentWeapon.GetComponent<WeaponRotation>();
+    }
+
+    void SelectHighlightedWeapon()
+    {
+        int highlightedIndex = radialMenu.GetHighlightedIndex();
+        if (highlightedIndex != -1)
+        {
+            SwitchWeapon(highlightedIndex + 1); // + 1 to account for fists
+        }
     }
 }
