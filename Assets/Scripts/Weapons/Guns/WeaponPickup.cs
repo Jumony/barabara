@@ -22,6 +22,16 @@ public class WeaponPickup : MonoBehaviour
     {
         if (playerInRange && Input.GetKeyDown(KeyCode.E) && currencyManager.GetBalance(currencyType) >= weaponType.price)
         {
+            // Checks to see if player already has weapon
+            foreach (GameObject weapon in playerController.weapons)
+            {
+                IGunBehaviour weaponBehaviour = weapon.GetComponent<IGunBehaviour>();
+                if (weaponBehaviour != null && weaponBehaviour.GetWeaponType().weaponID == weaponType.weaponID)
+                {
+                    Debug.Log("You already have this in your inventory. Ignoring");
+                    return;
+                }
+            }
             HandleTransaction();
             HandleAchievement();
 
