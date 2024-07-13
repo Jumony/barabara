@@ -14,12 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lines:
   - speakerName: Tommy
+    speakerIcon: {fileID: 1574107694, guid: 7ff8de6c89f0b6445bf3c21971284812, type: 3}
     text: Test 1
-  - speakerName: Tommy
+  - speakerName: Gun-Chan
+    speakerIcon: {fileID: 21300000, guid: 727455b60b1021f48ad45d1b14c2bb4e, type: 3}
     text: Test 2
   - speakerName: Tommy
+    speakerIcon: {fileID: 1574107694, guid: 7ff8de6c89f0b6445bf3c21971284812, type: 3}
     text: Test 3
-  - speakerName: Tommy
+  - speakerName: Gun-Chan
+    speakerIcon: {fileID: 21300000, guid: 727455b60b1021f48ad45d1b14c2bb4e, type: 3}
     text: Test 4
   - speakerName: Tommy
+    speakerIcon: {fileID: 1574107694, guid: 7ff8de6c89f0b6445bf3c21971284812, type: 3}
     text: Test 5

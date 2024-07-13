@@ -5751,9 +5751,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a44ec9a6a6236da4ab391e0438d88614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialoguePrefab: {fileID: 2905002099086956685, guid: 6d7074cefb0be774ca7aed7136f436e5, type: 3}
+  dialoguePrefab: {fileID: 970776230}
   characterNameText: {fileID: 277354703}
   dialogueText: {fileID: 774298157}
+  speakerImage: {fileID: 622506804}
 --- !u!4 &155814990
 Transform:
   m_ObjectHideFlags: 0
@@ -6341,6 +6342,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 593044890}
   m_CullTransparentMesh: 1
+--- !u!114 &622506804 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 721975945523164602, guid: 6d7074cefb0be774ca7aed7136f436e5, type: 3}
+  m_PrefabInstance: {fileID: 8589954758215116111}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &655585286
 GameObject:
   m_ObjectHideFlags: 0
@@ -25481,6 +25493,11 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &970776230 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2905002099086956685, guid: 6d7074cefb0be774ca7aed7136f436e5, type: 3}
+  m_PrefabInstance: {fileID: 8589954758215116111}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1178576396
 GameObject:
   m_ObjectHideFlags: 0
@@ -26866,7 +26883,7 @@ GameObject:
   - component: {fileID: 1986006801}
   - component: {fileID: 1986006800}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Dialogue Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27131,9 +27148,17 @@ PrefabInstance:
       value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 774988386318723109, guid: 144b922dbe6ad1f4891a459f185c43ba, type: 3}
+      propertyPath: dialogue
+      value: 
+      objectReference: {fileID: 11400000, guid: f0f7302657a3b32449e654fa13578a77, type: 2}
+    - target: {fileID: 774988386318723109, guid: 144b922dbe6ad1f4891a459f185c43ba, type: 3}
       propertyPath: radialMenu
       value: 
       objectReference: {fileID: 1817169435}
+    - target: {fileID: 774988386318723109, guid: 144b922dbe6ad1f4891a459f185c43ba, type: 3}
+      propertyPath: dialogueManager
+      value: 
+      objectReference: {fileID: 155814989}
     - target: {fileID: 869186445142644461, guid: 144b922dbe6ad1f4891a459f185c43ba, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -27337,6 +27362,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialoguePanel
       objectReference: {fileID: 0}
+    - target: {fileID: 2905002099086956685, guid: 6d7074cefb0be774ca7aed7136f436e5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5839639015591213837, guid: 6d7074cefb0be774ca7aed7136f436e5, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -27416,6 +27445,10 @@ PrefabInstance:
     - target: {fileID: 5839639015591213837, guid: 6d7074cefb0be774ca7aed7136f436e5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579392816970900947, guid: 6d7074cefb0be774ca7aed7136f436e5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

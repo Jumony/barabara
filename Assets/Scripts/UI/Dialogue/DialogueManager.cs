@@ -7,9 +7,14 @@ using UnityEngine.UI;
 public class DialogueManager : MonoBehaviour
 {
     public GameObject dialoguePrefab;
-    public TextMeshProUGUI characterNameText;
+    [Header("Dialogue Info")]
+    public TextMeshProUGUI speakerName;
     public TextMeshProUGUI dialogueText;
     public Image speakerImage;
+
+    [Header("Parameters")]
+    [Tooltip("Smaller = Faster")]
+    public float dialogueSpeed;
 
     private Queue<DialogueLines> dialogueLines;
     private bool isDialogueActive = false;
@@ -22,19 +27,20 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
-        if (isDialogueActive && Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && isDialogueActive)
         {
             DisplayNextLine();
         }
     }
 
-    // This is meant to be called
+    // This is meant to be called (by triggers, etc.)
+    // Cleans up everything, fills queue with dialogue and starts with first line
     public void StartDialogue(Dialogue dialogue)
     {
         dialoguePrefab.SetActive(true);
         dialogueLines.Clear();
-        DialogueLines testLine;
-        testLine = dialogue.lines[1];
+
+        speakerImage.sprite = dialogue.lines[0].speakerIcon;
 
         foreach (DialogueLines line in dialogue.lines)
         {
@@ -45,8 +51,10 @@ public class DialogueManager : MonoBehaviour
         DisplayNextLine();
     }
 
+    // Loads sprite and text to be displayed
     public void DisplayNextLine()
     {
+        // Ends dialogue if there are no more lines
         if (dialogueLines.Count == 0)
         {
             EndDialogue();
@@ -54,8 +62,10 @@ public class DialogueManager : MonoBehaviour
         }
 
         DialogueLines line = dialogueLines.Dequeue();
-        characterNameText.text = line.speakerName;
-        StopAllCoroutines();
+
+        speakerImage.sprite = line.speakerIcon;
+        speakerName.text = line.speakerName;
+        StopAllCoroutines(); // Only stops coroutines running in this instance of DialogueManager
         StartCoroutine(TypeSentence(line.text));
     }
 
@@ -65,7 +75,7 @@ public class DialogueManager : MonoBehaviour
         foreach (char letter in sentence.ToCharArray())
         {
             dialogueText.text += letter;
-            yield return null;
+            yield return new WaitForSeconds(dialogueSpeed);
         }
     }
 
