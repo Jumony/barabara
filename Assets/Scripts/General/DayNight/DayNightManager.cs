@@ -33,6 +33,7 @@ public class DayNightManager : MonoBehaviour
         StartCoroutine(DayNightCycle());
     }
 
+    // Color.Lerp -- Should get to using that soon
     IEnumerator ColorTransition(Color startColor, Color endColor, float duration)
     {
         float t = 0;

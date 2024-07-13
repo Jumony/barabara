@@ -9,6 +9,7 @@ public class DialogueManager : MonoBehaviour
     public GameObject dialoguePrefab;
     public TextMeshProUGUI characterNameText;
     public TextMeshProUGUI dialogueText;
+    public Image speakerImage;
 
     private Queue<DialogueLines> dialogueLines;
     private bool isDialogueActive = false;
@@ -32,11 +33,14 @@ public class DialogueManager : MonoBehaviour
     {
         dialoguePrefab.SetActive(true);
         dialogueLines.Clear();
+        DialogueLines testLine;
+        testLine = dialogue.lines[1];
 
         foreach (DialogueLines line in dialogue.lines)
         {
             dialogueLines.Enqueue(line);
         }
+
         isDialogueActive = true;
         DisplayNextLine();
     }

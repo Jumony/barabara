@@ -6914,9 +6914,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentTimeOfDay: 0
   globalLight: {fileID: 767605642}
+  dayColor: {r: 1, g: 1, b: 1, a: 0}
+  nightColor: {r: 0.01802242, g: 0.04358236, b: 0.4245283, a: 0}
   transitionTime: 2
   daytimeLength: 3
-  nighttimeLength: 60
+  nighttimeLength: 3
 --- !u!1 &890254970
 GameObject:
   m_ObjectHideFlags: 0

@@ -22,6 +22,10 @@ public class PlayerController : MonoBehaviour
     private WeaponRotation weaponRotation;
     public RadialMenu radialMenu;
 
+    // TESTING
+    public DialogueManager dialogueManager;
+    public Dialogue dialogue;
+
     public List<GameObject> weapons = new List<GameObject>(); 
     private int currentWeaponIndex = 0;
 
@@ -60,6 +64,11 @@ public class PlayerController : MonoBehaviour
         {
             radialMenu.centerPoint.gameObject.SetActive(false);
             SelectHighlightedWeapon();
+        }
+
+        if (Input.GetKeyUp(KeyCode.R))
+        {
+            dialogueManager.StartDialogue(dialogue);
         }
     }
 
