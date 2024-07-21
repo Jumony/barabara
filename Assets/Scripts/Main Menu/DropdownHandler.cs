@@ -12,6 +12,7 @@ public class DropdownHandler : MonoBehaviour
     private void Start()
     {
         dropdown.onValueChanged.AddListener(delegate { DropdownValueChanged(dropdown); });
+        Screen.SetResolution(1920, 1080, true);
         InitializeDropdown();
     }
 
@@ -53,8 +54,12 @@ public class DropdownHandler : MonoBehaviour
     private void DropdownValueChanged(TMP_Dropdown dropdown)
     {
         Debug.Log("New Dropdown Value: " + dropdown.value);
+        string selectedOption = dropdown.options[dropdown.value].text;
+        string[] dimensions = selectedOption.Split('x');
+        int width = int.Parse(dimensions[0].Trim());
+        int height = int.Parse(dimensions[1].Trim());
         Resolution newResolution = Screen.resolutions[dropdown.value];
-        Screen.SetResolution(newResolution.width, newResolution.height, FullScreenMode.Windowed);
+        Screen.SetResolution(width, height, FullScreenMode.FullScreenWindow);
     }
 
     /*
