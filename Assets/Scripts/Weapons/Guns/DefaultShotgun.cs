@@ -21,7 +21,7 @@ public class DefaultShotgun : MonoBehaviour, IGunBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") && Time.time >= nextFireTime)
+        if (Input.GetButtonDown("Fire1") && Time.time >= nextFireTime && !GameObject.Find("InventoryManager").GetComponent<RadialMenu>().menuEnabled)
         {
             Shoot();
             nextFireTime = Time.time + fireRate;

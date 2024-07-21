@@ -57,11 +57,13 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
+            radialMenu.menuEnabled = true;
             radialMenu.centerPoint.gameObject.SetActive(true);
         }
 
         if (Input.GetKeyUp(KeyCode.Tab))
         {
+            radialMenu.menuEnabled = false;
             radialMenu.centerPoint.gameObject.SetActive(false);
             SelectHighlightedWeapon();
         }

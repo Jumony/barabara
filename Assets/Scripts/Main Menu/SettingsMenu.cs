@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class SettingsMenu : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void ToggleFullscreen()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Screen.fullScreen = !Screen.fullScreen;
     }
 }

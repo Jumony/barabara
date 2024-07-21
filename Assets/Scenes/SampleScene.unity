@@ -5752,9 +5752,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialoguePrefab: {fileID: 970776230}
-  characterNameText: {fileID: 277354703}
+  speakerName: {fileID: 277354703}
   dialogueText: {fileID: 774298157}
   speakerImage: {fileID: 622506804}
+  dialogueSpeed: 0.1
 --- !u!4 &155814990
 Transform:
   m_ObjectHideFlags: 0
@@ -27464,6 +27465,7 @@ SceneRoots:
   - {fileID: 822529885}
   - {fileID: 1531638422}
   - {fileID: 879988961}
+  - {fileID: 155814990}
   - {fileID: 1817169436}
   - {fileID: 1183758751}
   - {fileID: 2122819535}
@@ -27478,5 +27480,4 @@ SceneRoots:
   - {fileID: 4843126702191448663}
   - {fileID: 6532697262266606080}
   - {fileID: 655585290}
-  - {fileID: 155814990}
   - {fileID: 1986006803}
