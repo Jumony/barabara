@@ -26856,6 +26856,7 @@ MonoBehaviour:
   playerController: {fileID: 5492530434551711403}
   centerPoint: {fileID: 1520505632}
   radius: 300
+  menuEnabled: 0
 --- !u!4 &1817169436
 Transform:
   m_ObjectHideFlags: 0

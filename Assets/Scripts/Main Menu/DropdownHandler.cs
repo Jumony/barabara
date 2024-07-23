@@ -6,13 +6,18 @@ public class DropdownHandler : MonoBehaviour
 {
     public TMP_Dropdown resolutionDropdown;
     public TMP_Dropdown refreshRateDropdown;
+    public TMP_Dropdown fullscreenModeDropdown;
+
     private Dictionary<string, List<RefreshRate>> resolutionToRefreshRates = new Dictionary<string, List<RefreshRate>>();
     private RefreshRate selectedRefreshRate;
+    private FullScreenMode fullscreenMode;
 
     private void Start()
     {
-        resolutionDropdown.onValueChanged.AddListener(delegate { DropdownValueChanged(resolutionDropdown); });
+        resolutionDropdown.onValueChanged.AddListener(delegate { ResolutionValueChanged(resolutionDropdown); });
         refreshRateDropdown.onValueChanged.AddListener(delegate { RefreshRateChanged(refreshRateDropdown); });
+        fullscreenModeDropdown.onValueChanged.AddListener(delegate { FullscreenModeChanged(fullscreenModeDropdown); });
+
         Screen.SetResolution(1920, 1080, true);
         InitializeDropdown();
     }
@@ -48,7 +53,7 @@ public class DropdownHandler : MonoBehaviour
         resolutionDropdown.AddOptions(resolutionOptions);
         resolutionDropdown.value = GetCurrentResolutionIndex();
         resolutionDropdown.RefreshShownValue();
-        DropdownValueChanged(resolutionDropdown); // Initialize the refresh rate dropdown
+        ResolutionValueChanged(resolutionDropdown); // Initialize the refresh rate dropdown
     }
 
     private int GetCurrentResolutionIndex()
@@ -57,12 +62,13 @@ public class DropdownHandler : MonoBehaviour
         return resolutionDropdown.options.FindIndex(option => option.text == currentResolution);
     }
 
-    private void DropdownValueChanged(TMP_Dropdown dropdown)
+    private void ResolutionValueChanged(TMP_Dropdown dropdown)
     {
         Debug.Log("New Dropdown Value: " + dropdown.value);
         string selectedOption = dropdown.options[dropdown.value].text;
 
-        if (resolutionToRefreshRates.TryGetValue(selectedOption, out var refreshRates))
+        // Gets the values of the 'resolution' key and puts it into a list of refresh rate objects
+        if (resolutionToRefreshRates.TryGetValue(selectedOption, out List<RefreshRate> refreshRates))
         {
             refreshRateDropdown.ClearOptions();
             List<string> refreshRateOptions = new List<string>();
@@ -91,7 +97,6 @@ public class DropdownHandler : MonoBehaviour
         {
             selectedRefreshRate = new RefreshRate { numerator = (uint)selectedRefreshRateValue, denominator = 1 };
             Debug.Log($"Selected refresh rate: {selectedRefreshRateValue} hz");
-            ApplyResolution();
         }
         else
         {
@@ -99,13 +104,31 @@ public class DropdownHandler : MonoBehaviour
         }
     }
 
-    private void ApplyResolution()
+    private void FullscreenModeChanged(TMP_Dropdown dropdown)
+    {
+        switch (dropdown.value)
+        {
+            case 0:
+                fullscreenMode = FullScreenMode.ExclusiveFullScreen;
+                break;
+
+            case 1:
+                fullscreenMode = FullScreenMode.FullScreenWindow;
+                break;
+
+            case 2: 
+                fullscreenMode = FullScreenMode.Windowed;
+                break;
+        }
+    }
+
+    public void ApplyResolution()
     {
         string selectedResolution = resolutionDropdown.options[resolutionDropdown.value].text;
         string[] dimensions = selectedResolution.Split('x');
         if (dimensions.Length == 2 && int.TryParse(dimensions[0].Trim(), out int width) && int.TryParse(dimensions[1].Trim(), out int height))
         {
-            Screen.SetResolution(width, height, FullScreenMode.ExclusiveFullScreen, selectedRefreshRate);
+            Screen.SetResolution(width, height, fullscreenMode, selectedRefreshRate);
             Debug.Log($"Applied resolution: {width}x{height} @ {selectedRefreshRate.numerator / selectedRefreshRate.denominator} hz");
         }
         else
