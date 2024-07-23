@@ -50,6 +50,9 @@ TagManager:
   - name: Gun
     uniqueID: 3681126455
     locked: 0
+  - name: Building
+    uniqueID: 523132061
+    locked: 0
   - name: Player
     uniqueID: 325507201
     locked: 0
