@@ -68,6 +68,7 @@ public class PlayerController : MonoBehaviour
             SelectHighlightedWeapon();
         }
 
+
         if (Input.GetKeyUp(KeyCode.R))
         {
             dialogueManager.StartDialogue(dialogue);

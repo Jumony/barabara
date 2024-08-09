@@ -25,6 +25,7 @@ public class WeaponRotation : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
+    // I SHOULD NEVER HAVE TOUCHED QUATERNIONS. I SHOULDVE JUST FLIPPED THE PLAYER BY -1 SCALE
     public void HandleWeaponFlipping(float currentAngle, float rotationThreshold)
     {
         if (facingRight && Mathf.Abs(currentAngle) > rotationThreshold)
