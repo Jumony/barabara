@@ -5782,6 +5782,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &373442271 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 24927115423854844, guid: 144b922dbe6ad1f4891a459f185c43ba, type: 3}
+  m_PrefabInstance: {fileID: 1646101408778160386}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &389288323
 GameObject:
   m_ObjectHideFlags: 0
@@ -7016,6 +7021,11 @@ MonoBehaviour:
   transitionTime: 2
   daytimeLength: 3
   nighttimeLength: 3
+--- !u!1 &880497331 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4941699848407619219, guid: 144b922dbe6ad1f4891a459f185c43ba, type: 3}
+  m_PrefabInstance: {fileID: 1646101408778160386}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &890254970
 GameObject:
   m_ObjectHideFlags: 0
@@ -25578,6 +25588,11 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &904698868 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2243641036078407687, guid: 144b922dbe6ad1f4891a459f185c43ba, type: 3}
+  m_PrefabInstance: {fileID: 1646101408778160386}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &970776230 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2905002099086956685, guid: 6d7074cefb0be774ca7aed7136f436e5, type: 3}
@@ -27173,6 +27188,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f77ef34d4cb950b4e8cbb41a00856637, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  customizationDictScript: {fileID: 1752848678}
+  shirtObject: {fileID: 904698868}
+  bodyObject: {fileID: 880497331}
+  hatObject: {fileID: 373442271}
 --- !u!1 &1817169434
 GameObject:
   m_ObjectHideFlags: 0
@@ -27597,7 +27616,7 @@ PrefabInstance:
       objectReference: {fileID: 155814989}
     - target: {fileID: 869186445142644461, guid: 144b922dbe6ad1f4891a459f185c43ba, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.02
+      value: 1.23
       objectReference: {fileID: 0}
     - target: {fileID: 869186445142644461, guid: 144b922dbe6ad1f4891a459f185c43ba, type: 3}
       propertyPath: m_LocalPosition.y

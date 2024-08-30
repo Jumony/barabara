@@ -83,7 +83,6 @@ public class PlayerController : MonoBehaviour
 
         Vector2 lookDirection = mousePos - weaponRotation.gameObject.transform.position;
 
-
         float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
 
         float distanceToPlayer = Vector2.Distance(mousePos, transform.position);
