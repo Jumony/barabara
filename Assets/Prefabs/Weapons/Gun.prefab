@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootOrigin: {fileID: 6661408929581028753}
-  playerWeaponType: {fileID: 11400000, guid: 51b18865bd3a0bc4489062e48bfcf559, type: 2}
+  weaponType: {fileID: 11400000, guid: 51b18865bd3a0bc4489062e48bfcf559, type: 2}
   fireRate: 0.5
 --- !u!1 &3980426635440733790
 GameObject:
@@ -141,7 +141,7 @@ Transform:
   m_GameObject: {fileID: 3980426635440733790}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.131, y: 0.016234305, z: 0}
+  m_LocalPosition: {x: 0.553, y: 0.062, z: 0}
   m_LocalScale: {x: 1.6565616, y: 1.6565616, z: 1.6564518}
   m_ConstrainProportionsScale: 0
   m_Children: []

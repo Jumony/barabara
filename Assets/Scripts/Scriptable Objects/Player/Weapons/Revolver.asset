@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Revolver
   m_EditorClassIdentifier: 
   weaponID: 0
-  projectileSpeed: 5000
+  projectileSpeed: 500
+  projectileLifetime: 2
+  fireRate: 1
   damage: 20
   price: 0
   gunPrefab: {fileID: 2735431840345228025, guid: cf0d2d8e2fec4f343acedb2b43885d47, type: 3}

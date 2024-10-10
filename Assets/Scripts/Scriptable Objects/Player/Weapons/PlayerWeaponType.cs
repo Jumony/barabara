@@ -8,6 +8,8 @@ public class PlayerWeaponType : ScriptableObject
 {
     public int weaponID;
     public float projectileSpeed;
+    public float projectileLifetime;
+    public float fireRate;
     public float damage;
     public int price;
     public GameObject gunPrefab;

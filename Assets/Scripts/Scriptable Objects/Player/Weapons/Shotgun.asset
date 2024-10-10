@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Shotgun
   m_EditorClassIdentifier: 
   weaponID: 1
-  projectileSpeed: 1500
+  projectileSpeed: 200
+  projectileLifetime: 1
+  fireRate: 2
   damage: 20
   price: 1
   gunPrefab: {fileID: 7695977494905872872, guid: 3304f82f94a9cc848b62181eb51d7383, type: 3}
